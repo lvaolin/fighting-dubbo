@@ -6,4 +6,5 @@ public interface IOrderService {
 
      List<OrderPo> selectAll();
 
+     int selectCount();
 }

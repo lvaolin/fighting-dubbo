@@ -17,6 +17,11 @@ public class productController {
         return orderService.selectAll();
     }
 
+    @RequestMapping("/selectCount")
+    Object selectCount() {
+        return orderService.selectCount();
+    }
+
 
 
 }

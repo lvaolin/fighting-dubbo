@@ -6,6 +6,7 @@ import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @DubboService
 @Component
@@ -13,11 +14,21 @@ public class SeataStorageServiceImpl implements ISeataStorageService {
 
     @Override
     public List<SeataStoragePo> selectAll() {
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public int selectCount() {
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
