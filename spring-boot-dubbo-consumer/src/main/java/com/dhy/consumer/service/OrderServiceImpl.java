@@ -23,7 +23,7 @@ public class OrderServiceImpl implements IOrderService {
     //@DubboReference(async = true)//针对接口中所有方法
     @DubboReference(methods ={
             @Method(name = "selectCount",async = true),
-            @Method(name = "selectAll",async = true
+            @Method(name = "selectAll",async = false
                    // ,
                     //oninvoke = "seataStorageServiceCallback.oninvoke"
                     ,
