@@ -9,7 +9,7 @@
 		<module>spring-boot-dubbo-consumer</module>
 		<module>spring-boot-dubbo-itf</module>
 		<module>spring-boot-dubbo-provider</module>
-		<module>dhy-test-starter</module>
+		<module>dhy-mystarter</module>
 	</modules>
 
 	<properties>
