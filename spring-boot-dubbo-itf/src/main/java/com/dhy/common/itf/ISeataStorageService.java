@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ISeataStorageService {
 
-     List<SeataStoragePo> selectAll();
+     List<SeataStoragePo> selectAll(SeataStoragePo po);
 
      int selectCount();
 

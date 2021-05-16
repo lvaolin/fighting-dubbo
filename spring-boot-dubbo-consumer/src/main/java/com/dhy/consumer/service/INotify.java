@@ -10,10 +10,10 @@ import java.util.List;
  * @Author lvaolin
  * @Date 2021/5/15 22:46
  **/
-public interface ISeataStorageServiceCallback {
-    void oninvoke();
+public interface INotify {
+    void oninvoke(SeataStoragePo po);
 
-    void onreturn(List<SeataStoragePo> list);
+    void onreturn(List<SeataStoragePo> list,SeataStoragePo po);
 
-    void onthrow(Throwable ex);
+    void onthrow(Throwable ex,SeataStoragePo po);
 }

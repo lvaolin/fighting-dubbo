@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class SeataStorageServiceImpl implements ISeataStorageService {
 
     @Override
-    public List<SeataStoragePo> selectAll() {
+    public List<SeataStoragePo> selectAll(SeataStoragePo po) {
         try {
             TimeUnit.SECONDS.sleep(5);
         } catch (InterruptedException e) {

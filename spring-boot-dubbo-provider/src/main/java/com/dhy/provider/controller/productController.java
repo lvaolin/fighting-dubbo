@@ -16,7 +16,7 @@ public class productController {
 
     @RequestMapping("/selectAll")
     Object getProduct() {
-        return seataStorageService.selectAll();
+        return seataStorageService.selectAll(new SeataStoragePo());
     }
 
     @RequestMapping("/insert")

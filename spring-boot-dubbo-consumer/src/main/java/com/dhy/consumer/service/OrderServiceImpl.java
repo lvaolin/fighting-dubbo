@@ -19,25 +19,21 @@ import java.util.concurrent.Future;
 @Component
 public class OrderServiceImpl implements IOrderService {
     @Autowired
-    private ISeataStorageServiceCallback seataStorageServiceCallback;
-    //@DubboReference(async = true)//针对接口中所有方法
+    private INotify notify;
     @DubboReference(methods ={
             @Method(name = "selectCount",async = true),
-            @Method(name = "selectAll",async = false
-                   // ,
-                    //oninvoke = "seataStorageServiceCallback.oninvoke"
-                    ,
-                    onreturn ="seataStorageServiceCallback.onreturn"
-                    //,
-                    //onthrow ="seataStorageServiceCallback.onthrowForSelectAll"
+            @Method(name = "selectAll",async = true
+                    ,oninvoke = "notify.oninvoke"
+                    ,onreturn ="notify.onreturn"
+                    ,onthrow ="notify.onthrow"
             ),
             @Method(name = "insert",async = true),
             @Method(name = "delete",async = true)
-    } )//指定特定方法生效
+    })
     private ISeataStorageService seataStorageService;
     @Override
     public List<OrderPo> selectAll() {
-        List<SeataStoragePo> seataStoragePos = seataStorageService.selectAll();
+        List<SeataStoragePo> seataStoragePos = seataStorageService.selectAll(new SeataStoragePo());
         return null;
     }
 
