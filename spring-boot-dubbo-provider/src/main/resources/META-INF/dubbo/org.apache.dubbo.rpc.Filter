@@ -1,1 +1,2 @@
 myProviderFilter=com.dhy.provider.filter.MyProviderFilter
+tracing=brave.dubbo.rpc.TracingFilter

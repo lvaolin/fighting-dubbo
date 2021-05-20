@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 @RequestMapping("/product")
 public class productController {
@@ -14,6 +16,7 @@ public class productController {
 
     @RequestMapping("/selectAll")
     Object getProduct() {
+        test();
         return orderService.selectAll();
     }
 
@@ -23,5 +26,12 @@ public class productController {
     }
 
 
+    void test(){
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
