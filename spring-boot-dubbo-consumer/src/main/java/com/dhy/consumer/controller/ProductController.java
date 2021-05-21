@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/product")
-public class productController {
+public class ProductController {
 
     @Autowired
     private IOrderService orderService;
