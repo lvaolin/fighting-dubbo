@@ -10,6 +10,7 @@
 		<module>spring-boot-dubbo-itf</module>
 		<module>spring-boot-dubbo-provider</module>
 		<module>dhy-mystarter</module>
+		<module>dhy-EnableMyConfig</module>
 	</modules>
 
 	<properties>

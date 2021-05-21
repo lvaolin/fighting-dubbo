@@ -9,10 +9,6 @@ public class MyConfigDemo {
     User getUser(){
         return new User("demo");
     }
-
-
-
-
     public static  class User{
         String name;
 

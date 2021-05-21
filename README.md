@@ -6,4 +6,5 @@
 ## dubbo 服务治理参数优先级测试
 ## dubbo 异步调用测试
 ## dubbo 事件通知机制测试
-## spring boot starter 自定义测试
+## 通过自定义 spring boot starter 引入第三方组件
+## 通过自定义注解引入第三方组件
