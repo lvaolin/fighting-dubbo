@@ -18,7 +18,7 @@ public class HelloServiceImpl implements IHelloService {
     }
 
     @Override
-    public String eat(FoodDto foodDto) {
-        return foodDto.getName();
+    public FoodDto eat(FoodDto foodDto) {
+        return foodDto;
     }
 }

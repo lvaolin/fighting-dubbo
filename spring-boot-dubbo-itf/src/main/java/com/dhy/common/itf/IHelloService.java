@@ -11,5 +11,5 @@ import javax.validation.constraints.NotNull;
 public interface IHelloService {
 
     String sayHello(@NotNull String name);
-    String eat(@NotNull FoodDto foodDto);
+    FoodDto eat(@NotNull FoodDto foodDto);
 }
