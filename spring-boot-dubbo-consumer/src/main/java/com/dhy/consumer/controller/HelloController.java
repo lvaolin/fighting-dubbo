@@ -1,18 +1,13 @@
 package com.dhy.consumer.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.dhy.common.itf.FoodDto;
 import com.dhy.common.itf.IHelloService;
-import com.dhy.common.itf.IOrderService;
 import com.dhy.consumer.result.DhyResult;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/hello")
