@@ -7,6 +7,8 @@ import org.apache.dubbo.rpc.AsyncContext;
 import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,11 +35,18 @@ public class SeataStorageServiceImpl implements ISeataStorageService {
             this.selectCount();
             this.insert(null);
             this.delete(null);
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return null;
+        ArrayList<SeataStoragePo> seataStoragePos = new ArrayList<>();
+        SeataStoragePo seataStoragePo = new SeataStoragePo();
+        seataStoragePo.setLastUpdateTime(new Date());
+        seataStoragePos.add(seataStoragePo);
+        seataStoragePos.add(new SeataStoragePo());
+        seataStoragePos.add(new SeataStoragePo());
+        seataStoragePos.add(new SeataStoragePo());
+        return seataStoragePos;
     }
 
     @Override

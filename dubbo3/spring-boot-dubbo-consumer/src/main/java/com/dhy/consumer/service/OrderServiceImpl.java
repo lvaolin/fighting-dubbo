@@ -1,5 +1,6 @@
 package com.dhy.consumer.service;
 
+import com.alibaba.fastjson.JSON;
 import com.dhy.common.itf.IOrderService;
 import com.dhy.common.itf.ISeataStorageService;
 import com.dhy.common.itf.OrderPo;
@@ -11,12 +12,14 @@ import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-@DubboService
+
 @Component
 public class OrderServiceImpl implements IOrderService {
     @Autowired
@@ -35,9 +38,18 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public List<OrderPo> selectAll() {
         List<SeataStoragePo> seataStoragePos = seataStorageService.selectAll(new SeataStoragePo());
-        Future<Object> future = RpcContext.getContext().getFuture();
+        //Future<Object> future = RpcContext.getContext().getFuture();
         //future.get();
-        return null;
+        System.out.println(JSON.toJSONString(seataStoragePos));
+
+        OrderPo orderPo = new OrderPo();
+        orderPo.setId(1000);
+        orderPo.setPrice(2000d);
+        orderPo.setStock(300);
+        orderPo.setLastUpdateTime(new Date());
+        ArrayList<OrderPo> orderPos = new ArrayList<>();
+        orderPos.add(orderPo);
+        return orderPos;
     }
 
     public void oninvokeForSelectAll(){
