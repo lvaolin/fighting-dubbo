@@ -6,9 +6,9 @@
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>spring-boot-dubbo-consumer</module>
-		<module>spring-boot-dubbo-itf</module>
-		<module>spring-boot-dubbo-provider</module>
+		<module>spring-boot-dubbo3-consumer</module>
+		<module>spring-boot-dubbo3-itf</module>
+		<module>spring-boot-dubbo3-provider</module>
 	</modules>
 
 	<properties>
