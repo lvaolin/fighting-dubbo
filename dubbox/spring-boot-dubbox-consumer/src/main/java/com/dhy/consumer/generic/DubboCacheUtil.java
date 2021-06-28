@@ -1,7 +1,8 @@
 package com.dhy.consumer.generic;
 
-import org.apache.dubbo.config.ReferenceConfig;
-import org.apache.dubbo.rpc.service.GenericService;
+
+import com.alibaba.dubbo.config.ReferenceConfig;
+import com.alibaba.dubbo.rpc.service.GenericService;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

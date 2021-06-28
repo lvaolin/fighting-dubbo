@@ -2,7 +2,7 @@ package com.dhy.demo.spring.jdbc.consumer;
 
 import com.dhy.common.itf.ISeataStorageService;
 import com.dhy.demo.spring.jdbc.common.IHelloService;
-import org.apache.dubbo.rpc.service.EchoService;
+import com.alibaba.dubbo.rpc.service.EchoService;
 import org.junit.jupiter.api.Test;
 
 //@SpringBootTest

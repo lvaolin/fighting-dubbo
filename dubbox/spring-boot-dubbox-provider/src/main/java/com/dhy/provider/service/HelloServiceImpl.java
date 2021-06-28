@@ -1,9 +1,8 @@
 package com.dhy.provider.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.dhy.common.itf.FoodDto;
 import com.dhy.common.itf.IHelloService;
-import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.config.annotation.Method;
 
 /**
  * @Project spring-boot-dubbo
@@ -11,11 +10,7 @@ import org.apache.dubbo.config.annotation.Method;
  * @Author lvaolin
  * @Date 2021/5/21 12:01 下午
  */
-//@DubboService(validation = "true")
-@DubboService(methods = {
-        @Method(name = "sayHello",validation = "true" ),
-        @Method(name = "eat",validation = "true" )
-})
+@Service
 public class HelloServiceImpl implements IHelloService {
     @Override
     public String sayHello(String name) {

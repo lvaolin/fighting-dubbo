@@ -1,21 +1,17 @@
 package com.dhy.consumer.service;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.dhy.common.itf.IOrderService;
 import com.dhy.common.itf.ISeataStorageService;
 import com.dhy.common.itf.OrderPo;
 import com.dhy.common.itf.SeataStoragePo;
-import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.config.annotation.Method;
-import org.apache.dubbo.rpc.RpcContext;
+import com.alibaba.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -24,23 +20,13 @@ import java.util.concurrent.Future;
 public class OrderServiceImpl implements IOrderService {
     @Autowired
     private INotify notify;
-    @DubboReference(methods ={
-            @Method(name = "selectCount",async = true),
-            @Method(name = "selectAll",async = false
-//                    ,oninvoke = "notify.oninvoke"
-//                    ,onreturn ="notify.onreturn"
-//                    ,onthrow ="notify.onthrow"
-            ),
-            @Method(name = "insert",async = true,isReturn = false,sent = false),
-            @Method(name = "delete",async = true)
-    })
+    @Reference
     private ISeataStorageService seataStorageService;
     @Override
     public List<OrderPo> selectAll() {
         List<SeataStoragePo> seataStoragePos = seataStorageService.selectAll(new SeataStoragePo());
         //Future<Object> future = RpcContext.getContext().getFuture();
         //future.get();
-        System.out.println(JSON.toJSONString(seataStoragePos));
 
         OrderPo orderPo = new OrderPo();
         orderPo.setId(1000);

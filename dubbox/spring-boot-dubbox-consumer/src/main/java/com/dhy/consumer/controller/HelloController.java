@@ -1,9 +1,9 @@
 package com.dhy.consumer.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.dhy.common.itf.FoodDto;
 import com.dhy.common.itf.IHelloService;
 import com.dhy.consumer.result.DhyResult;
-import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/hello")
 public class HelloController {
 
-    @DubboReference(validation = "false")
+    @Reference(validation = "false")
     private IHelloService helloService;
 
     @RequestMapping("/sayHello")

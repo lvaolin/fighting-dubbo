@@ -1,6 +1,6 @@
 package com.dhy.demo.spring.jdbc.provider;
 
-import org.apache.dubbo.config.*;
+import com.alibaba.dubbo.config.*;
 
 /**
  * @Title DubboRPC
