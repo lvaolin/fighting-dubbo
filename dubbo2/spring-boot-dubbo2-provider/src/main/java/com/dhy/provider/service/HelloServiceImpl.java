@@ -13,7 +13,7 @@ import org.apache.dubbo.config.annotation.Method;
  */
 //@DubboService(validation = "true")
 @DubboService(methods = {
-        @Method(name = "sayHello",validation = "true" ),
+        @Method(name = "sayHello" ),
         @Method(name = "eat",validation = "true" )
 })
 public class HelloServiceImpl implements IHelloService {
