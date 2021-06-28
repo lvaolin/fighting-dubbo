@@ -2,13 +2,12 @@ package com.dhy.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
-public class ConsumerSpringApplication {
+public class Consumer2SpringApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ConsumerSpringApplication.class, args);
+        SpringApplication.run(Consumer2SpringApplication.class, args);
     }
 
 }
