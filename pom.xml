@@ -7,6 +7,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>dubbox</module>
+		<module>dubbo2</module>
+		<module>dubbo3</module>
 	</modules>
 
 	<properties>

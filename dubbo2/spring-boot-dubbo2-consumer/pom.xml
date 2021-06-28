@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.dhy</groupId>
-    <artifactId>spring-boot-dubbo-consumer</artifactId>
+    <artifactId>spring-boot-dubbo2-consumer</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
