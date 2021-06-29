@@ -11,19 +11,19 @@ import org.apache.dubbo.config.annotation.Method;
  * @Author lvaolin
  * @Date 2021/5/21 12:01 下午
  */
-//@DubboService(validation = "true")
 @DubboService(methods = {
-        @Method(name = "sayHello",validation = "true" ),
+        @Method(name = "sayHello" ),
         @Method(name = "eat",validation = "true" )
 })
 public class HelloServiceImpl implements IHelloService {
     @Override
     public String sayHello(String name) {
-        return "hello,"+name;
+        return "from dubbo3 hello,"+name;
     }
 
     @Override
     public FoodDto eat(FoodDto foodDto) {
+        foodDto.setName("面包来自dubbo3");
         foodDto.setPrice(9999.0);
         return foodDto;
     }

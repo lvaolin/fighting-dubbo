@@ -37,7 +37,7 @@ public class DubboGenericCall {
             registry.setAddress(regServer);
             //消费者端
             ConsumerConfig consumerConfig = new ConsumerConfig();
-            consumerConfig.setGeneric("bean");
+            consumerConfig.setGeneric(true);
             consumerConfig.setTimeout(300000);
             consumerConfig.setRetries(0);
             //引用配置

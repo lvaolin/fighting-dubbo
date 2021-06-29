@@ -39,7 +39,7 @@ public class ConfigDubbo {
     private String dubboConsumerFilter;
     @Value("${dubbo.consumer.timeout:60000}")
     private Integer dubboConsumerTimeout;
-    @Value("${dubbo.consumer.retries:1}")
+    @Value("${dubbo.consumer.retries:0}")
     private Integer dubboConsumerRetries;
 
 

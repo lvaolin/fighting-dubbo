@@ -24,6 +24,7 @@ public class HelloServiceImpl implements IHelloService {
 
     @Override
     public FoodDto eat(FoodDto foodDto) {
+        foodDto.setName("面包来自dubbo2");
         foodDto.setPrice(9999.0);
         return foodDto;
     }
