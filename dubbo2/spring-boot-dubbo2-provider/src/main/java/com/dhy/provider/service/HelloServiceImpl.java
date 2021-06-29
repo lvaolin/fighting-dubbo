@@ -19,7 +19,7 @@ import org.apache.dubbo.config.annotation.Method;
 public class HelloServiceImpl implements IHelloService {
     @Override
     public String sayHello(String name) {
-        return "hello,"+name;
+        return "from dubbo2 hello,"+name;
     }
 
     @Override

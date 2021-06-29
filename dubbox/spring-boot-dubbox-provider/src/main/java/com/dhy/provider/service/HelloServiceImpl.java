@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class HelloServiceImpl implements IHelloService {
     @Override
     public String sayHello(String name) {
-        return "hello,"+name;
+        return "from dubbox hello,"+name;
     }
 
     @Override
