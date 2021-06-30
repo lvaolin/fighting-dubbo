@@ -26,6 +26,7 @@ import java.io.ObjectInputStream;
 @Slf4j
 public class DubboGenericCall {
 
+
     @Value("${dubbo.registry.address}")
     private String regServer;
     @Value("${spring.application.name}")
@@ -93,10 +94,7 @@ public class DubboGenericCall {
                     parameterTypeNames,
                     parameterValues
             );
-            byte[] re = (byte[]) o;
-            Serialization nativejava = ExtensionLoader.getExtensionLoader(Serialization.class).getExtension("nativejava");
-            ObjectInput deserialize = nativejava.deserialize(null, new ByteArrayInputStream(re));
-            return deserialize.readObject();
+           return o;
         }else{
             throw new Exception("在注册中心没有找到可用的服务提供者");
         }
