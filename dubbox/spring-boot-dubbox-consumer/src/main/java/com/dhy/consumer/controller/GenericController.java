@@ -1,6 +1,8 @@
 package com.dhy.consumer.controller;
 
+import com.alibaba.dubbo.common.beanutil.JavaBeanAccessor;
 import com.alibaba.dubbo.common.beanutil.JavaBeanDescriptor;
+import com.alibaba.dubbo.common.beanutil.JavaBeanSerializeUtil;
 import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import com.alibaba.dubbo.common.serialize.ObjectInput;
 import com.alibaba.dubbo.common.serialize.ObjectOutput;
@@ -56,12 +58,13 @@ public class GenericController {
             }
 
             if ("bean".equals(type)) {
-                JavaBeanDescriptor beanDescriptor = new JavaBeanDescriptor();
-                beanDescriptor.setType(JavaBeanDescriptor.TYPE_CLASS);
-                beanDescriptor.setClassName("com.dhy.common.itf.FoodDto");
-                beanDescriptor.setProperty("id","1000");
-                beanDescriptor.setProperty("name","javabeandescriptor");
-                parameterValues = new Object[]{beanDescriptor};
+                FoodDto foodDto = new FoodDto();
+                foodDto.setName("wodemianbao");
+                foodDto.setPrice(2222.99);
+                foodDto.setId(1000);
+                foodDto.setLastUpdateTime(new Date());
+                parameterValues = new Object[]{foodDto};
+
             }
 
             if ("nativejava".equals(type)) {
@@ -102,14 +105,20 @@ public class GenericController {
      * @throws Exception
      */
     private Object decodeResult (Object result,String type) throws Exception {
-        if ("true".equalsIgnoreCase(type)||"bean".equalsIgnoreCase(type)) {
+        if ("true".equalsIgnoreCase(type)) {
             return result;
-        }else{
+        }
+        if ("bean".equalsIgnoreCase(type)) {
+            JavaBeanDescriptor re = (JavaBeanDescriptor) result;
+            return JavaBeanSerializeUtil.deserialize(re);
+        }
+        if ("nativejava".equalsIgnoreCase(type)) {
             byte[] re = (byte[]) result;
             Serialization nativejava = ExtensionLoader.getExtensionLoader(Serialization.class).getExtension("nativejava");
             ObjectInput deserialize = nativejava.deserialize(null, new ByteArrayInputStream(re));
             return deserialize.readObject();
         }
+        return null;
     }
 
     /**
@@ -121,10 +130,14 @@ public class GenericController {
      */
     private Object[] getParameterValues(Object[] parameterValues ,String type) throws IOException {
         Object[] result = new Object[parameterValues.length];
-        if ("true".equalsIgnoreCase(type)||"bean".equalsIgnoreCase(type)) {
+        if ("true".equalsIgnoreCase(type)) {
             return parameterValues;
         }
         for (int i = 0; i < parameterValues.length; i++) {
+            if ("bean".equals(type)) {
+                result[i] = JavaBeanSerializeUtil.serialize(parameterValues[i]);
+            }
+
             if ("nativejava".equalsIgnoreCase(type)) {
                 //准备一块缓冲区
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(512);
@@ -138,6 +151,7 @@ public class GenericController {
                 //从缓冲区获取序列化结果
                 result[i] = byteArrayOutputStream.toByteArray();
             }
+
         }
 
         return result;

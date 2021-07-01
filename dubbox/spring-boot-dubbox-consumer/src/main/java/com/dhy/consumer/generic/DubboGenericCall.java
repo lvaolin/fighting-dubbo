@@ -73,7 +73,7 @@ public class DubboGenericCall {
             rc.setAsync(false);
             DubboCacheUtil.referenceConfigMap.put(key,rc);
         }
-        ReferenceConfigCache cache = ReferenceConfigCache.getCache();
+        ReferenceConfigCache cache = ReferenceConfigCache.getCache(type);
         GenericService genericService = cache.get(rc);
         return genericService;
     }
