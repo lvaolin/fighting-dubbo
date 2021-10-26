@@ -25,12 +25,30 @@ public class SeataStorageServiceImpl implements ISeataStorageService {
             e.printStackTrace();
         }
         ArrayList<SeataStoragePo> seataStoragePos = new ArrayList<>();
-        SeataStoragePo seataStoragePo = new SeataStoragePo();
-        seataStoragePo.setLastUpdateTime(new Date());
-        seataStoragePos.add(seataStoragePo);
-        seataStoragePos.add(new SeataStoragePo());
-        seataStoragePos.add(new SeataStoragePo());
-        seataStoragePos.add(new SeataStoragePo());
+        long i=100000;
+        while (i-->0){
+            SeataStoragePo seataStoragePo = new SeataStoragePo();
+            seataStoragePo.setId(1000000000);
+            seataStoragePo.setLastUpdateTime(new Date());
+            seataStoragePo.setDesc("模拟大数据量传输，payload过载异常");
+            seataStoragePos.add(seataStoragePo);
+        }
+
+        return seataStoragePos;
+    }
+
+    @Override
+    public List<SeataStoragePo> selectBigData(SeataStoragePo po) {
+        ArrayList<SeataStoragePo> seataStoragePos = new ArrayList<>();
+        long i=100000;
+        while (i-->0){
+            SeataStoragePo seataStoragePo = new SeataStoragePo();
+            seataStoragePo.setId(1000000000);
+            seataStoragePo.setLastUpdateTime(new Date());
+            seataStoragePo.setDesc("模拟大数据量传输，payload过载异常");
+            seataStoragePos.add(seataStoragePo);
+        }
+
         return seataStoragePos;
     }
 

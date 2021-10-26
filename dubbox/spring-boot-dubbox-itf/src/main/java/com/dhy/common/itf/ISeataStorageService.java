@@ -6,7 +6,9 @@ public interface ISeataStorageService {
 
      List<SeataStoragePo> selectAll(SeataStoragePo po);
 
-     int selectCount();
+    List<SeataStoragePo> selectBigData(SeataStoragePo po);
+
+    int selectCount();
 
      int insert(SeataStoragePo po);
 

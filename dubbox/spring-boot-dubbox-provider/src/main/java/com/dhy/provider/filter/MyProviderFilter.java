@@ -15,9 +15,12 @@ public class MyProviderFilter implements Filter {
         try {
             Result result = invoker.invoke(invocation);
             if (result.hasException()) {
-                //是否有异常，异常处理
+                //是否有异常，异常处理，无法感知IO异常
             }
             return result;
+        }catch (Throwable e){
+            e.printStackTrace();
+            throw e;
         }finally {
             String log = invoker.getInterface().getCanonicalName()+","+invocation.getMethodName();
             System.out.println(log+","+(System.currentTimeMillis()-startTime));

@@ -1,6 +1,5 @@
 package com.dhy.consumer.controller;
 
-import com.alibaba.dubbo.common.beanutil.JavaBeanAccessor;
 import com.alibaba.dubbo.common.beanutil.JavaBeanDescriptor;
 import com.alibaba.dubbo.common.beanutil.JavaBeanSerializeUtil;
 import com.alibaba.dubbo.common.extension.ExtensionLoader;

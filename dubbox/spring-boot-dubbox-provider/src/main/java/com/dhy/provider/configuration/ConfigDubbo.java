@@ -1,9 +1,6 @@
 package com.dhy.provider.configuration;
 
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.ConsumerConfig;
-import com.alibaba.dubbo.config.ProtocolConfig;
-import com.alibaba.dubbo.config.RegistryConfig;
+import com.alibaba.dubbo.config.*;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
@@ -66,6 +63,7 @@ public class ConfigDubbo {
         ProtocolConfig protocolConfig = new ProtocolConfig();
         protocolConfig.setName(dubboProtocolName);
         protocolConfig.setPort(Integer.parseInt(dubboProtocolPort));
+        protocolConfig.setPayload(100);//针对某个协议的负载大小限制
         return protocolConfig;
     }
 
@@ -85,6 +83,17 @@ public class ConfigDubbo {
         consumerConfig.setRetries(dubboConsumerRetries);
         consumerConfig.setFilter(dubboConsumerFilter);
         return consumerConfig;
+    }
+
+    @Bean
+    public ProviderConfig providerConfig() {
+        ProviderConfig providerConfig = new ProviderConfig();
+        providerConfig.setTimeout(dubboConsumerTimeout);
+        providerConfig.setApplication(applicationConfig());
+        providerConfig.setRetries(dubboConsumerRetries);
+        providerConfig.setFilter(dubboConsumerFilter);
+        providerConfig.setPayload(100);//针对所有协议的负载大小限制
+        return providerConfig;
     }
 
 }

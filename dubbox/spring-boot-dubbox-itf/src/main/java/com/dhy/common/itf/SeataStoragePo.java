@@ -12,5 +12,6 @@ public class SeataStoragePo implements Serializable {
     private Double price;
     private Integer stock;
     private Date lastUpdateTime;
+    private String desc;
 
 }
