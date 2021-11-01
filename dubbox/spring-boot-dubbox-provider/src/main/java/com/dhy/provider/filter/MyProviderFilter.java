@@ -4,7 +4,7 @@ import com.alibaba.dubbo.rpc.*;
 
 /**
  * @Project spring-boot-dubbo
- * @Description 主要用途描述
+ * @Description 提供者端过滤器
  * @Author lvaolin
  * @Date 2021/5/14 4:29 下午
  */
@@ -19,6 +19,7 @@ public class MyProviderFilter implements Filter {
             }
             return result;
         }catch (Throwable e){
+            //这里也无法感知IO异常
             e.printStackTrace();
             throw e;
         }finally {

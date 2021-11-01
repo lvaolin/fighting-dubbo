@@ -19,11 +19,11 @@ public class MyConsumerFilter implements Filter {
         try {
             Result result = invoker.invoke(invocation);
             if (result.hasException()) {
-                //是否有异常，异常处理
+                //是否有异常，异常处理，这里无法感知IO异常
             }
             return result;
         }catch (Throwable e){
-            //e.printStackTrace();
+            //这里可以感知IO异常
             dubboRpcLog(invoker,invocation,e.getMessage());
             throw e;
         }finally {
@@ -45,9 +45,6 @@ public class MyConsumerFilter implements Filter {
         message.append("dubboUrl:").append(invoker.getUrl()).append(";");
         message.append("interface:").append(invoker.getInterface().getName()).append(";");
         message.append("methodName:").append(invocation.getMethodName()).append(";");
-        //message.append("tokenStr:").append(RpcContext.getContext().getAttachment(CommonConst.tokenStr)).append(";");
-        //message.append("DbKey:").append(RpcContext.getContext().getAttachment(CommonConst.dbKey)).append(";");
-        //message.append("orgId:").append(RpcContext.getContext().getAttachment(CommonConst.orgId)).append(";");
 
         Class<?>[] parameterTypes = invocation.getParameterTypes();
         Object[] arguments = invocation.getArguments();
