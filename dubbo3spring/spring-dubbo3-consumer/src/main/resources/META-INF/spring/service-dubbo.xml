@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://dubbo.apache.org/schema/dubbo
+        http://dubbo.apache.org/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<dubbo:application name="myConsumerService"/>
+
+	<dubbo:registry  address="zookeeper://127.0.0.1:2181" >
+
+	</dubbo:registry>
+
+	<dubbo:protocol name="dubbo" port="-1"  dispatcher="message" threadpool="fixed"  threads="10"  />
+
+	<dubbo:consumer  timeout="60000" check="false" retries="2"  filter="myConsumerFilter"/>
+	<dubbo:provider id="providingFilter">
+
+	</dubbo:provider>
+
+	<dubbo:annotation package="
+		com.dhy.consumer"
+	/>
+
+
+	<dubbo:reference id="registryService" interface="org.apache.dubbo.registry.RegistryService" check="false"/>
+
+</beans>
