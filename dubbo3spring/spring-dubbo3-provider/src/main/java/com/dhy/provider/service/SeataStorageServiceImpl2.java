@@ -2,11 +2,10 @@ package com.dhy.provider.service;
 
 import com.dhy.common.itf.IHelloService;
 import com.dhy.common.itf.ISeataStorageService;
+import com.dhy.common.itf.ISeataStorageService2;
 import com.dhy.common.itf.SeataStoragePo;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.rpc.AsyncContext;
-import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +16,10 @@ import java.util.concurrent.TimeUnit;
 
 @DubboService
 @Component
-public class SeataStorageServiceImpl implements ISeataStorageService {
+public class SeataStorageServiceImpl2 implements ISeataStorageService2 {
 
-    @DubboReference
-    private IHelloService iHelloService1;
-
+    @Autowired
+    private IHelloService helloServiceImpl;
 
     @Override
     public List<SeataStoragePo> selectAll(SeataStoragePo po) {
