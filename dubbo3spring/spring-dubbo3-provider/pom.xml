@@ -114,11 +114,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version> 3.2.0</version>
+                <version>2.6</version>
                 <configuration>
                     <classesDirectory>${project.build.directory}/classes/</classesDirectory>
                     <archive>
-                        <addMavenDescriptor>true</addMavenDescriptor>
+                        <addMavenDescriptor>false</addMavenDescriptor>
                         <manifest>
                             <mainClass>com.dhy.provider.Main</mainClass>
                             <useUniqueVersions>false</useUniqueVersions>
@@ -126,7 +126,7 @@
                             <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
                         <manifestEntries>
-                            <Class-Path>. /conf</Class-Path>
+                            <Class-Path>.</Class-Path>
                         </manifestEntries>
                     </archive>
                 </configuration>
