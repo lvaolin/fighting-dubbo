@@ -101,7 +101,7 @@
 				<executions>
 					<execution>
 						<id>myplugin1</id>
-						<phase>compile</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>myplugin1</goal>
 						</goals>
