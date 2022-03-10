@@ -31,14 +31,14 @@ public class SeataStorageServiceImpl implements ISeataStorageService {
 //            asyncContext.write("Hello " + po + ", response from provider.");
 //        }).start();
         //return null;
-        try {
+        //try {
             this.selectCount();
             this.insert(null);
             this.delete(null);
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+            //TimeUnit.SECONDS.sleep(1);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         ArrayList<SeataStoragePo> seataStoragePos = new ArrayList<>();
         SeataStoragePo seataStoragePo = new SeataStoragePo();
         seataStoragePo.setLastUpdateTime(new Date());
@@ -51,11 +51,11 @@ public class SeataStorageServiceImpl implements ISeataStorageService {
 
     @Override
     public int selectCount() {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            TimeUnit.SECONDS.sleep(2);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         return 0;
     }
 

@@ -6,7 +6,7 @@ import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.rpc.service.GenericService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.utils.ReferenceConfigCache;
+import org.apache.dubbo.config.utils.SimpleReferenceCache;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,7 @@ public class DubboGenericCall {
     private String applicationName;
 
 
-    public GenericService getGenericService(String interfaceName){
+    public GenericService getGenericService(String interfaceName,String type){
         ReferenceConfig<GenericService> rc = DubboCacheUtil.referenceConfigMap.get(interfaceName);
         if (rc==null) {
             //服务信息
@@ -37,7 +37,16 @@ public class DubboGenericCall {
             registry.setAddress(regServer);
             //消费者端
             ConsumerConfig consumerConfig = new ConsumerConfig();
-            consumerConfig.setGeneric(true);
+            if ("true".equals(type)) {
+                consumerConfig.setGeneric(true);
+            }
+            if ("bean".equals(type)) {
+                consumerConfig.setGeneric("bean");
+            }
+            if ("nativejava".equals(type)) {
+                consumerConfig.setGeneric("nativejava");
+            }
+
             consumerConfig.setTimeout(300000);
             consumerConfig.setRetries(0);
             //引用配置
@@ -52,7 +61,7 @@ public class DubboGenericCall {
             rc.setAsync(false);
             DubboCacheUtil.referenceConfigMap.put(interfaceName,rc);
         }
-        ReferenceConfigCache cache = ReferenceConfigCache.getCache();
+        SimpleReferenceCache cache = SimpleReferenceCache.getCache();
         GenericService genericService = cache.get(rc);
         return genericService;
     }
@@ -64,8 +73,8 @@ public class DubboGenericCall {
      * @param parameterTypeNames
      * @param parameterValues
      */
-    public Object invoke(String interfaceName, String methodName, String[] parameterTypeNames, Object[] parameterValues) throws Exception {
-        GenericService genericService = this.getGenericService(interfaceName);
+    public Object invoke(String interfaceName, String methodName, String[] parameterTypeNames, Object[] parameterValues,String type) throws Exception {
+        GenericService genericService = this.getGenericService(interfaceName,type);
         if (genericService!=null) {
             return genericService.$invoke(
                     methodName,
