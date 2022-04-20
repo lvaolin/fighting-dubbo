@@ -1,7 +1,9 @@
 package com.dhy.consumer.controller;
 
 import com.dhy.common.itf.Dto1;
+import com.dhy.common.itf.Dto2;
 import com.dhy.common.itf.IService1;
+import com.dhy.common.itf.IService2;
 import com.dhy.consumer.result.DhyResult;
 import com.dhy.consumer.service.ILocalService1;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -17,6 +19,9 @@ public class Controller1 {
 
     @DubboReference
     private IService1 service1;
+    @DubboReference
+    private IService2 service2;
+    
     @Autowired
     private ILocalService1 localService1;
 
@@ -32,6 +37,7 @@ public class Controller1 {
         DhyResult.DhyResultBody dhyResultBody = new DhyResult.DhyResultBody();
         try {
             service1.method1Try(new Dto1());
+            service2.method1Try(new Dto2());
             localService1.localMethod1();
             dhyResultBody.setData("ok");
         }catch (Throwable t){
