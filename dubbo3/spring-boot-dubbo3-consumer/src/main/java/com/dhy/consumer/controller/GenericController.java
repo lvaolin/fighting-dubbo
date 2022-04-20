@@ -7,6 +7,7 @@ import org.apache.dubbo.common.beanutil.JavaBeanDescriptor;
 import org.apache.dubbo.common.beanutil.JavaBeanSerializeUtil;
 import org.apache.dubbo.common.extension.ExtensionLoader;
 import org.apache.dubbo.common.serialize.ObjectInput;
+import org.apache.dubbo.common.serialize.ObjectOutput;
 import org.apache.dubbo.common.serialize.Serialization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -71,14 +73,11 @@ public class GenericController {
                 foodDto.setPrice(2222.99);
                 foodDto.setId(1000);
                 foodDto.setLastUpdateTime(new Date());
-                //参数对象序列化
-                ByteArrayOutputStream bos = new ByteArrayOutputStream(512);
-                ExtensionLoader.getExtensionLoader(Serialization.class)
-                        .getExtension("nativejava").serialize(null, bos).writeObject(foodDto);
-
-                parameterValues = new Object[]{bos.toByteArray()};
+                parameterValues = new Object[]{foodDto};
             }
 
+            //---根据泛化调用的方式进行 参数编码
+            parameterValues = getParameterValues(parameterValues,type);
 
             //-----进行泛化调用-----------
             Object result = dubboGenericCall.invoke(interfaceName,methodName,parameterTypeNames,parameterValues,type);
@@ -95,6 +94,41 @@ public class GenericController {
         return dhyResult;
     }
 
+    /**
+     * 根据不同泛化类型进行 参数编码
+     * @param parameterValues
+     * @param type
+     * @return
+     * @throws IOException
+     */
+    private Object[] getParameterValues(Object[] parameterValues ,String type) throws IOException {
+        Object[] result = new Object[parameterValues.length];
+        if ("true".equalsIgnoreCase(type)) {
+            return parameterValues;
+        }
+        for (int i = 0; i < parameterValues.length; i++) {
+            if ("bean".equals(type)) {
+                result[i] = JavaBeanSerializeUtil.serialize(parameterValues[i]);
+            }
+
+            if ("nativejava".equalsIgnoreCase(type)) {
+                //准备一块缓冲区
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(512);
+                //获取序列化器
+                Serialization nativejava = ExtensionLoader.getExtensionLoader(Serialization.class)
+                        .getExtension("nativejava");
+                //序列化器与缓冲区关联
+                ObjectOutput output = nativejava.serialize(null, byteArrayOutputStream);
+                //序列化器向缓冲区中写入byte
+                output.writeObject(parameterValues[i]);
+                //从缓冲区获取序列化结果
+                result[i] = byteArrayOutputStream.toByteArray();
+            }
+
+        }
+
+        return result;
+    }
 
     /**
      * 根据不同泛化类型进行 结果解码
