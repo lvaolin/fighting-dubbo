@@ -10,6 +10,7 @@
 		<module>dubbo2</module>
 		<module>dubbo3</module>
 		<module>dubbo3spring</module>
+		<module>dubbo3-tcc</module>
 	</modules>
 
 	<properties>
