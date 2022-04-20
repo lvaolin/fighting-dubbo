@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
  * @Author lvaolin
  * @Date 2021/5/21 12:00 下午
  */
-public interface IHelloService {
-
-    String sayHello(@NotNull String name);
-    FoodDto eat(@NotNull FoodDto foodDto);
+public interface IService1 {
+    Dto1 method1Try(@NotNull Dto1 dto1);
+    Dto1 method1Confirm(@NotNull Dto1 dto1);
+    Dto1 method1Cancel(@NotNull Dto1 dto1);
 }
