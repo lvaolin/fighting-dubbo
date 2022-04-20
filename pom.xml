@@ -9,6 +9,7 @@
 		<module>dubbox</module>
 		<module>dubbo2</module>
 		<module>dubbo3</module>
+		<module>dubbo3spring</module>
 	</modules>
 
 	<properties>
@@ -16,8 +17,6 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
-		<dubbo.version>3.0.5</dubbo.version>
-		<spring-boot.version>2.3.4.RELEASE</spring-boot.version>
 	</properties>
 
 
