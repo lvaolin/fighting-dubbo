@@ -15,7 +15,7 @@ public class Controller1 {
 
     @RequestMapping("/service1/method1")
     Object service1method1() {
-        return service1.method1Try(new Dto1());
+        return service1.method1Try(null,new Dto1());
     }
 
 }

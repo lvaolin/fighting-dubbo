@@ -6,8 +6,11 @@ import com.dhy.common.itf.IService1;
 import com.dhy.common.itf.IService2;
 import com.dhy.consumer.result.DhyResult;
 import com.dhy.consumer.service.ILocalService1;
+import com.dhy.consumer.service.TccTransactionService;
+import io.seata.common.util.StringUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,13 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("")
 public class Controller1 {
 
-    @DubboReference
-    private IService1 service1;
-    @DubboReference
-    private IService2 service2;
     
     @Autowired
-    private ILocalService1 localService1;
+    private TccTransactionService tccTransactionService;
 
     @RequestMapping("/biz1")
     DhyResult biz1(HttpServletRequest request) {
@@ -36,9 +35,11 @@ public class Controller1 {
         DhyResult dhyResult = new DhyResult();
         DhyResult.DhyResultBody dhyResultBody = new DhyResult.DhyResultBody();
         try {
-            service1.method1Try(new Dto1());
-            service2.method1Try(new Dto2());
-            localService1.localMethod1();
+            String txId = tccTransactionService.doTransactionCommit();
+            System.out.println(txId);
+            Assert.isTrue(StringUtils.isNotBlank(txId), "事务开启失败");
+            System.out.println("transaction commit demo finish.");
+
             dhyResultBody.setData("ok");
         }catch (Throwable t){
             dhyResultHead.setCode("120");

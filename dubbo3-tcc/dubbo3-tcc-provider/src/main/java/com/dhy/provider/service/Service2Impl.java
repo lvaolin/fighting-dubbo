@@ -3,6 +3,7 @@ package com.dhy.provider.service;
 import com.dhy.common.itf.Dto2;
 import com.dhy.common.itf.IService1;
 import com.dhy.common.itf.IService2;
+import io.seata.rm.tcc.api.BusinessActionContext;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Component;
 
@@ -18,23 +19,21 @@ import javax.validation.constraints.NotNull;
 @Component
 public class Service2Impl implements IService2 {
     @Override
-    public Dto2 method1Try(@NotNull Dto2 dto2) {
+    public boolean method1Try(BusinessActionContext actionContext, @NotNull Dto2 dto2) {
         dto2.setName("Try ok");
         System.out.println("IService2.method1Try");
-        return dto2;
+        return true;
     }
 
     @Override
-    public Dto2 method1Confirm(@NotNull Dto2 dto2) {
-        dto2.setName("Confirm ok");
+    public boolean method1Confirm(BusinessActionContext actionContext) {
         System.out.println("IService2.method1Confirm");
-        return dto2;
+        return true;
     }
 
     @Override
-    public Dto2 method1Cancel(@NotNull Dto2 dto2) {
-        dto2.setName("Cancel ok");
+    public boolean method1Cancel(BusinessActionContext actionContext) {
         System.out.println("IService2.method1Cancel");
-        return dto2;
+        return true;
     }
 }

@@ -1,5 +1,8 @@
 package com.dhy.common.itf;
 
+import io.seata.rm.tcc.api.BusinessActionContext;
+import io.seata.rm.tcc.api.TwoPhaseBusinessAction;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -9,7 +12,8 @@ import javax.validation.constraints.NotNull;
  * @Date 2021/5/21 12:00 下午
  */
 public interface IService1 {
-    Dto1 method1Try(@NotNull Dto1 dto1);
-    Dto1 method1Confirm(@NotNull Dto1 dto1);
-    Dto1 method1Cancel(@NotNull Dto1 dto1);
+    @TwoPhaseBusinessAction(name = "IService1", commitMethod = "method1Confirm", rollbackMethod = "method1Cancel")
+    boolean method1Try(BusinessActionContext actionContext, @NotNull Dto1 dto1);
+    boolean method1Confirm(BusinessActionContext actionContext);
+    boolean method1Cancel(BusinessActionContext actionContext);
 }
