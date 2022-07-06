@@ -33,7 +33,7 @@ public class SeataStorageServiceImpl implements ISeataStorageService {
             this.selectCount();
             this.insert(null);
             this.delete(null);
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

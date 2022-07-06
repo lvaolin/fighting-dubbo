@@ -19,9 +19,9 @@ public class TccTransactionService {
 
     @Autowired
     private ILocalService1 tccActionOne;
-    @DubboReference
+    @DubboReference(check = false,lazy = true)
     private IService1 service1;
-    @DubboReference
+    @DubboReference(check = false,lazy = true)
     private IService2 service2;
 
     /**
